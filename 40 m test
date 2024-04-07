@@ -1,0 +1,76 @@
+
+#B-tree index | innodb_flush_log_at_trx_commit = 1 | between
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth BETWEEN '2018-03-27' AND '2018-04-29';
+37276 row(s) fetched - 12s (0.059s fetch), on 2024-04-05 at 17:47:57
+
+CREATE INDEX idx_DateOfBirth ON Users (DateOfBirth);
+37276 row(s) fetched - 6s (0.053s fetch), on 2024-04-05 at 17:47:03
+
+#B-tree index | innodb_flush_log_at_trx_commit = 1 | =
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth = '2018-03-27';
+1171 row(s) fetched - 12s (0.001s fetch), on 2024-04-05 at 21:14:42
+
+CREATE INDEX idx_DateOfBirth ON Users (DateOfBirth);
+1171 row(s) fetched - 0.016s (0.001s fetch), on 2024-04-05 at 21:17:15
+
+
+#B-tree index | innodb_flush_log_at_trx_commit = 2 | between
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth BETWEEN '2018-03-27' AND '2018-04-29';
+37276 row(s) fetched - 12s (0.015s fetch), on 2024-04-05 at 21:43:32
+
+CREATE INDEX idx_DateOfBirth ON Users (DateOfBirth);
+37276 row(s) fetched - 7s (0.022s fetch), on 2024-04-05 at 21:44:38
+
+#B-tree index | innodb_flush_log_at_trx_commit = 2 | =
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth = '2018-03-27';
+1171 row(s) fetched - 13s (0.002s fetch), on 2024-04-05 at 21:46:09
+
+CREATE INDEX idx_DateOfBirth ON Users (DateOfBirth);
+1171 row(s) fetched - 0.045s (0.001s fetch), on 2024-04-05 at 21:45:04
+
+
+
+
+#Hash index | innodb_flush_log_at_trx_commit = 1 | between
+ 
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth BETWEEN '2018-03-27' AND '2018-04-29';
+37276 row(s) fetched - 12s (0.059s fetch), on 2024-04-05 at 17:47:57
+
+CREATE INDEX idx_DateOfBirth_hash ON Users (DateOfBirth) USING HASH;
+37276 row(s) fetched - 7s (0.041s fetch), on 2024-04-05 at 17:53:52
+
+#Hash index | innodb_flush_log_at_trx_commit = 1 | =
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth = '2018-03-27';
+1171 row(s) fetched - 12s (0.001s fetch), on 2024-04-05 at 17:55:19
+
+CREATE INDEX idx_DateOfBirth_hash ON Users (DateOfBirth) USING HASH;
+1171 row(s) fetched - 0.281s, on 2024-04-05 at 17:54:46
+
+
+#Hash index | innodb_flush_log_at_trx_commit = 2 | between
+
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth BETWEEN '2018-03-27' AND '2018-04-29';
+37276 row(s) fetched - 12s (0.059s fetch), on 2024-04-05 at 17:47:57
+
+CREATE INDEX idx_DateOfBirth_hash ON Users (DateOfBirth) USING HASH;
+37276 row(s) fetched - 7s (0.028s fetch), on 2024-04-05 at 21:47:55
+
+# Hash index | innodb_flush_log_at_trx_commit = 2 | =
+SELECT SQL_NO_CACHE  * FROM Users u 
+WHERE DateOfBirth = '2018-03-27';
+1171 row(s) fetched - 12s (0.001s fetch), on 2024-04-05 at 17:55:19
+
+CREATE INDEX idx_DateOfBirth_hash ON Users (DateOfBirth) USING HASH;
+1171 row(s) fetched - 0.285s (0.002s fetch), on 2024-04-05 at 21:48:12

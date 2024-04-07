@@ -1,0 +1,41 @@
+ ab -c 50 -t 8 http://localhost:5219/WeatherForecast
+
+select * from Users 
+where FirstName = 'Vitalii'
+1
+SET GLOBAL innodb_flush_log_at_trx_commit = 0;
+
+select * from Users 
+where FirstName = 'Vitalii';
+
+select Count(*) from Users 
+where FirstName = 'Vitalii'
+
+delete from Users 
+WHERE  FirstName = 'Vitalii'
+
+SHOW VARIABLES LIKE 'innodb_flush_log_at_trx_commit';
+
+#innodb_flush_log_at_trx_commit = 0;
+#3 sec
+#5349
+#4426
+#8 sec
+#13863
+#15068
+
+#innodb_flush_log_at_trx_commit = 1;
+#3 sec
+#3857
+#3974
+#8 sec
+#9981
+#9582
+
+#innodb_flush_log_at_trx_commit = 2;
+#3 sec
+#4517
+#4167
+#8 sec
+#12942
+#11553
